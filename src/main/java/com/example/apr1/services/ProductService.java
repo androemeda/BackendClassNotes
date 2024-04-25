@@ -10,4 +10,8 @@ public interface ProductService {
     Product getProductById(Long id); //**returning Product obj because interfaces should be as generalised as possible
 
     List<Product> getAllProducts();
+
+
+    //if the input product object has an id then it would be an "update" call. if input product object doesnt have an id, it would be a "create" call.
+    Product createProduct(Product product);
 }

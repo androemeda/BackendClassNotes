@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service("fakeStoreProductService")
 public class FakeStoreProductService implements ProductService{
     @Override
     public Product getProductById(Long id) {
@@ -26,9 +26,10 @@ public class FakeStoreProductService implements ProductService{
 
         //we have got the fakestoredto now. we have to convert it into product object.
 
-//        if(fakeStoreProductDto == null) {
-//            throw new ProductNotFoundException("please pass a valid product id");
-//        }
+        if(fakeStoreProductDto == null) {
+            throw new ProductNotFoundException(id , "please pass a valid product id");
+//            return null;
+        }
 
         Product product = new Product();
         product.setId(fakeStoreProductDto.getId());
@@ -60,6 +61,11 @@ public class FakeStoreProductService implements ProductService{
         }
 
         return products;
+    }
+
+    @Override
+    public Product createProduct(Product product) {
+        return null;
     }
 
     private Product convertFakeStoreProductDtoToProduct(FakeStoreProductDto fakeStoreProductDto) {
